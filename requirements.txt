@@ -1,0 +1,14 @@
+# 1. CORE AGENT FRAMEWORK AND MODEL
+google-adk
+google-genai
+
+# 2. DATA MANAGEMENT AND AUTHENTICATION
+# Required for .env file loading and Python/DB utility
+python-dotenv~=1.2.1
+SQLAlchemy~=2.0.44
+psycopg2-binary
+
+# 3. TESTING AND UTILITIES
+pytest~=9.0.1
+google-api-python-client~=2.187.0
+protobuf~=6.33.1

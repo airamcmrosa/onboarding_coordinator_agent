@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service for RAG protocol Persistence
+  postgres_db:
+    image: postgres:14-alpine
+    container_name: enterprise_protocols_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      # PostgreSQL Configuration Variables (using environment variables with defaults)
+      POSTGRES_USER: ${DB_USER:-enterprise_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-enterprise_pass}
+      POSTGRES_DB: ${DB_NAME:-protocols_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  # Defines a named volume for persistent storage
+  postgres_data:
